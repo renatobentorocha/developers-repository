@@ -24,3 +24,18 @@ export function* addUser(action) {
     yield put(UsersActions.addUserFailure('Erro ao adicionar usuário'));
   }
 }
+
+export function* deleteUser(action) {
+  try {
+    const id  = action.payload.id;
+
+    const users = yield select(state => state.users.data.filter(user => user.id !== id));
+
+    console.log(users)
+
+    yield put(UsersActions.deleteUserSuccess(users));
+  } catch (error) {
+    yield put(UsersActions.addUserFailure('Erro ao adicionar usuário'));
+    console.log(error)
+  }
+}

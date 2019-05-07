@@ -1,0 +1,44 @@
+.users {
+    position: absolute;
+    background-color: #ffffff;
+    width: 20%;
+    height: 80%;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    left: 20px;
+    z-index: 99;
+    box-shadow: 10px 10px 10px 5px black;
+    border-radius: 3%;
+}
+
+.users ul {
+    list-style: none;
+}
+
+.user {
+    display: flex;
+    margin: 20px 0 0 20px;
+}
+  
+.user img {
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;    
+}
+
+.userInfo {
+    margin: 0 5px 0 5px;
+}
+
+.remove-container {
+    display: flex;
+    align-items: center;
+}
+
+.btn-remove{
+    border: 0;
+}
+
+.btn-remove:hover {
+    cursor: pointer;
+}

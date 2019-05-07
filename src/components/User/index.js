@@ -1,47 +1,46 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { bindActionCreators } from 'redux';
 import { Creators as UsersActions } from '../../store/ducks/Users';
+import './styles.css';
+
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 class User extends Component {
   state = {
     userInput: '',
   };
 
-  handleUser = e => {
+  handleRemove = (e, id) => {
     e.preventDefault();
 
-    this.props.addUserRequest(this.state.userInput);
+    this.props.deleteUserRequest(id);
   };
+
 
   render() {
     return (
-      <div className="users">
-        <form onSubmit={this.handleUser}>
-          <input
-            type="text"
-            value={this.state.userInput}
-            onChange={e => {
-              this.setState({ userInput: e.target.value });
-            }}
-          />
-          <button type="submit">Enviar</button>
-        </form>
-        <div>
+      <div className="users"> 
+        
           <ul>
             {this.props.users.data.map(user => (
               <li key={user.id} className="user">
-                <div>
+                <div className="avatar">
                   <img src={user.avatar} alt="" />
                 </div>
-                <div>
+                <div className="userInfo">
                   <p>{user.name}</p>
                   <p>{user.login}</p>
                 </div>
+                <div className="remove-container">
+                  <button onClick={(e) => this.handleRemove(e, user.id)} className="btn-remove">
+                    <FontAwesomeIcon icon={faTrash} size="lg" color="#6699ff"/>
+                  </button>                  
+                </div>                
               </li>
             ))}
           </ul>
-        </div>
       </div>
     );
   }
