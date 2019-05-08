@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import Modal from 'react-modal';
-
+import { toast } from 'react-toastify';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Creators as ModalActions } from '../../store/ducks/modal';
@@ -16,6 +16,18 @@ class AddUser extends Component {
   state = {
     userInput: '',
   };
+
+  showError = () => {
+    toast.error(this.props.error, {
+      position: toast.POSITION.TOP_LEFT,
+    });
+
+    this.props.clearUsersError();
+  };
+
+  componentDidUpdate() {
+    if (this.props.error) this.showError();
+  }
 
   handleInputChange = e => this.setState({ userInput: e.target.value });
 
@@ -82,6 +94,7 @@ class AddUser extends Component {
 const mapStateToProps = state => ({
   modal: state.modal,
   loading: state.users.loading,
+  error: state.users.error,
 });
 
 const mapDispatchToProps = dispatch =>

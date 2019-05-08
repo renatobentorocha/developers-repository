@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import store from './store/index';
 import Container from './components/Container';
 import './components/styles.css';
+import './config/toast';
 
 function App() {
   return (
